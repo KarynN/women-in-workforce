@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+		<style>
+			html,body{
+				height: 100%;
+				padding: 0;
+				color: dimgray;
+				scroll-behavior: smooth;
+				font-family: 'Open Sans', sans-serif;
+				font-weight: 300;
+				font-size: 15px;
+			}
+			h2{
+				line-height: 1.25;
+				padding-top: 45px;
+				font-weight: 300;
+			}
+			h1{
+				line-height: 0.5;
+				padding-top: 5px;
+				font-weight: 300;
+				font-size: 20px;
+			}
+			h3{
+				line-height: 1;
+				padding-top: 5px;
+				font-weight: 300;
+				font-size: 12px;
+			}
+			svg{
+				padding: 20px;
+			}
+			text{
+				font-size: 10px;
+			}
+			strong{
+				font-weight: 600;
+			}
+
+			.title {
+				width: auto;
+				height: 86%;
+				font-size: 30px;
+				top: 60%;
+				-ms-transform: translateY(-50%);
+				transform: translateY(-50%);
+				position: relative;
+				padding: 10px;
+				padding-bottom: 0%;
+			}
+
+			#graphic {
+				max-width:  1440px;
+				width: auto;
+				position:   relative; 
+				height:  100%;
+				position:  relative; 
+				margin:auto;
+			}
+			.container {
+				height: 100%;
+				max-width: 440px;
+				width: auto;
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				height: 100%;
+				line-height: 1.5;
+				left: 500px;
+			}
+			.container div {
+				height: 100%;
+				display: block;
+				padding: 0 45px;
+			}
+			.fixed {
+				position: fixed;
+				max-width: 530px;
+				height: 500px;
+				top: 50px;
+				color: dimgray;
+			}
+  		</style>
+	</head>
+
+	<body>
+		<div class = "title">
+			<h2>Women in the Japanese Workforce</h2>
+			<h1>A look into statistics from 2019-2020</h1>
+			<h3>Hover over geometries for more information <br></br>Created in July 2020</h3>
+		</div>
+		<div id="graphic">
+		<div class="container">
+		  <div id="div1">
+			<h2> Women make up <strong>44.4%</strong> of the workforce in Japan.</h2>
+			<h3>Source: <br></br>https://www.stat.go.jp/data/roudou/rireki/nen/ft/pdf/2019.pdf</h3>
+		  </div>
+		  <div id="div2">
+			<h2>However, only <strong>20.5%</strong> are <strong>full-time</strong> female employees (正規職員)<br></br>The majority of female workers - <strong>26.1%</strong> - are <strong>non-regular employees</strong> (非正規職員) which include contract workers, part time workers, and temporary employees</h2>
+			<h3>*This data comes from a different report than the first and the percentages do not add up to the male and female worker percentages above. There was no explanation in the report on the discrepancies or whether there are workers other than full-time and non-regular employees who are not represented in the data.</h3>
+			<h3>Source: <br></br>https://www.stat.go.jp/data/roudou/sokuhou/nen/dt/pdf/ndtindex.pdf</h3>
+		</div>
+		  <div id="div3">
+			<h2>Potential reasons why people chose to have <strong>non-regular jobs</strong> sorted by gender<br></br>The option with the greatest gender disparity was <strong>"To be able to do housework and care for children/the elderly"</strong></h2>
+			<h3>Source: <br></br>https://www.stat.go.jp/data/roudou/sokuhou/nen/dt/pdf/ndtindex.pdf</h3> 
+		</div>
+		  <div id="div4">
+			<h2>Many of the non-regular female employees, while holding a job, may also be entirely responsible for housework and caring for their children and parents <br></br>This is called <strong>隠れ専業主婦</strong> - <strong>"hidden homemaker"</strong><br></br>More women in the workforce may not necessarily be representative of progress, but rather a greater burden on women</h2>
+		</div>
+		<div id="div5">
+			<h2>Non-regular workers are also more vulnerable to cutoffs <br></br>
+				Since April there has been a decrease in non-regular workers - <strong>70%</strong> of which are women<br></br>
+				This is seen as the combined result of businesses laying off their non-regular workers - the majority of whom are women and mothers having to quit their jobs to take care of their children at home due to school closures. 		</h2>
+			<h3>Source: <br></br>https://www.bloomberg.co.jp/news/articles/2020-07-03/QCQ7QMT0AFB501 <br></br>http://www.asahi.com/ajw/articles/13331716 </h3>
+		</div>
+		  <div id="div6">
+			<h2>The percentage of female employees in each industry</h2>
+			<h3>Source: <br></br>https://www.mhlw.go.jp/content/11900000/000510648.pdf</h3>
+		  </div>
+		  <div id="div7">
+			<h2>The percentage of female employees holding <strong>managerial roles</strong> in each industry <br></br>This value is <strong>under 10%</strong> for the majority of industries</h2>
+			<h3>Source: <br></br>https://www.mhlw.go.jp/content/11900000/000510648.pdf</h3>
+		</div>
+		  <div id="div8">
+			<h2>The average percentage of <strong>female board members</strong> out of the total number of board members in a company is <strong>5%</strong><br></br>The average number of female board members in a company is <strong>0.6</strong></h2>
+			<h3>Source: <br></br>http://www.gender.go.jp/policy/mieruka/company/yakuin.html</h3>
+		  </div>
+		</div>
+
+		<div class="fixed"><svg id="viz" width="100%" height="100%"></svg></div>
+		</div><!-- /graphic -->
+
+	<script>
+	
+	let svg = d3.select("svg");
+
+    svg.attr('width',500)
+		.attr('height',500)
+
+	tooltip = d3.select("body")
+      .append("div")
+      .style("position", "absolute")
+      .style("z-index", "1")
+	  .style("visibility", "hidden")
+	  .style("background","white")
+      .style("opacity","0.9")
+      .style("padding","5px")
+      .style("font-family", "'Open Sans', sans-serif")
+	  .style("font-size", "13px")
+	  .style("color", "black");
+
+
+	var datapie1 = {Men: 3828, Women: 3058}
+	var color = d3.scaleOrdinal()
+		.domain(datapie1)
+		.range(['#64a6bd', '#ffacc5'])
+	var pie = d3.pie()
+		.value(function(d) {return d.value; })
+	var data_ready = pie(d3.entries(datapie1))
+	svg.append("g")
+    	.selectAll("g")
+		.data(data_ready)
+		.enter()
+		.append('path')
+		.style("visibility", "hidden")
+		.attr("id", "chart1")
+		.attr('d', d3.arc()
+			.innerRadius(90)        
+			.outerRadius(123)
+		)
+		.attr('fill', function(d){ return(color(d.data.key)) })
+		.attr("stroke", "black")
+		.attr("transform", "translate(" + 250 + "," + 165 + ")")
+		.style("stroke-width", "1px")
+		.style("stroke", "dimgray")
+		.style("fill-opacity", 0.7)
+		.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.9')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(87)        
+					.outerRadius(126)
+				);
+				tooltip.style("visibility", "visible").text(d.data.key)
+			})
+		.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html(  d.data.key + " : " + "<br></br>" + d.data.value/100 + " million people" + "<br></br>" + Math.round((d.data.value/6886)*100*10)/10 +"%"))
+		.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.7')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(90)         
+					.outerRadius(123)
+				);
+				tooltip.style("visibility", "hidden")
+			})	
+
+
+	var datapie2 = {"Men Full-Time": 2334, "Women Full-Time": 1160, "Women Non-Regular": 1475, "Men Non-Regular": 691 }
+	var color = d3.scaleOrdinal()
+		.domain(datapie2)
+		.range(["#529cb5", "#ff93b3", "#ffccdb", "#b7d6e0"])
+	var pie = d3.pie()
+		.value(function(d) {return d.value; }).sort(null);
+	var data_ready2 = pie(d3.entries(datapie2))
+
+	svg.append("g")
+    	.selectAll("g")
+		.data(data_ready2)
+		.enter()
+		.append('path')
+		.style("visibility", "hidden")
+		.attr("id", "chart2")
+		.attr('d', d3.arc()
+			.innerRadius(90)        
+			.outerRadius(123)
+		)
+		.attr('fill', function(d){ return(color(d.data.key)) })
+		.attr("stroke", "black")
+		.attr("transform", "translate(" + 250 + "," + 165 + ")")
+		.style("stroke-width", "1px")
+		.style("stroke", "dimgray")
+		.style("fill-opacity", 0.7)
+		.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.9')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(87)        
+					.outerRadius(126)
+				);
+				tooltip.style("visibility", "visible").text(d.data.key)
+			})
+		.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html(  d.data.key + " : " + "<br></br>" + d.data.value/100 + " million people" + "<br></br>" + Math.round((d.data.value/5660)*100*10)/10 +"%"))
+		.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.7')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(90)         
+					.outerRadius(123)
+				);
+				tooltip.style("visibility", "hidden")
+			})	
+
+
+
+	d3.csv("roudou_why.csv")
+		.then(function(data) {
+
+		var subgroups = data.columns.slice(2,4)
+		var groups = d3.map(data, function(d){return(d.Response_E)}).keys()
+
+		var x = d3.scaleLinear()
+			.domain([0,450])
+			.range([0, 300]) /*
+			svg.append("g")
+			.attr("class", "myAxis") 
+			.call(d3.axisBottom(x))
+			.attr("transform", "translate(" + 180 + "," + 400 + ")") */
+
+		var y = d3.scaleBand()
+				.domain(groups)
+				.range([430, 0])
+				.padding(0.2)
+				.align(0);
+				svg.append("g")
+				.style("visibility", "hidden")
+				.attr("id", "chart3")
+				.call(d3.axisLeft(y).tickSize(0))
+				.attr("transform", "translate(" + 180 + "," + 100 + ")")
+				.selectAll("text")
+					.call(wrap, 150)
+					.attr("transform", "translate(-8,-5)")
+					.style("font-size", "11.5px")
+
+		var xSubgroup = d3.scaleBand()
+			.domain(subgroups)
+			.range([y.bandwidth(), 0])
+			.padding([0.05])
+			
+		var color = d3.scaleOrdinal()
+			.domain(subgroups)
+			.range(['#64a6bd', '#ffacc5'])
+
+		svg.append("g")
+			.selectAll("g")
+			.data(data)
+			.enter()
+			.append("g")
+			.style("visibility", "hidden")
+			.attr("id", "chart3")
+			.attr("transform", function(d) { return "translate(0, " + y(d.Response_E) + ")"; })
+			.selectAll("rect")
+			.data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
+			.enter().append("rect")
+			.attr("y", function(d) { return xSubgroup(d.key); })
+			.attr("x", function(d) { return y(d.value); })
+			.attr("height", xSubgroup.bandwidth()-3)
+			.attr("width", function(d) { return x(d.value); })
+			.attr("fill", function(d) { return color(d.key); })
+			.style('fill-opacity', '0.8')
+			.attr("transform", "translate(" + 181 + ","  +100+ ")")
+			.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.6')
+				.style("stroke-width", "1px");
+				tooltip.style("visibility", "visible").text(d.value)
+			})
+			.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html( d.value*10 + " thousand people"))
+			.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.8')
+				.style("stroke-width", "0px")
+				tooltip.style("visibility", "hidden")
+			})	
+
+		function wrap(text, width) {
+			text.each(function() {
+				var text = d3.select(this),
+					words = text.text().split(/\s+/).reverse(),
+					word,
+					line = [],
+					lineNumber = 0,
+					lineHeight = 1, 
+					y = text.attr("y"),
+					dy = parseFloat(text.attr("dy")),
+					tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+				while (word = words.pop()) {
+				line.push(word);
+				tspan.text(line.join(" "));
+				if (tspan.node().getComputedTextLength() > width) {
+					line.pop();
+					tspan.text(line.join(" "));
+					line = [word];
+					tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+
+					}
+				}
+			})
+		}
+	})
+
+
+	d3.csv("roudou_managerial.csv")
+		.then(function(data) {
+
+		var subgroups2 = data.columns.slice(2,4)
+		var groups2 = d3.map(data, function(d){return(d.Type_E)}).keys()
+
+
+		var x = d3.scaleLinear()
+			.domain([0,100])
+			.range([0, 300]) 
+			svg.append("g")
+			.attr("class", "myAxis") 
+			.style("visibility", "hidden")
+			.attr("id", "chart4")
+			.call(d3.axisBottom(x))
+			.attr("transform", "translate(" + 180 + "," + 483 + ")") 
+
+		var y = d3.scaleBand()
+				.domain(groups2)
+				.range([390, 0])
+				.padding(0.2)
+				.align(0);
+				svg.append("g")
+				.style("visibility", "hidden")
+				.attr("id", "chart4")
+				.call(d3.axisLeft(y).tickSize(0))
+				.attr("transform", "translate(" + 180 + "," + 100 + ")")
+				.selectAll("text")
+					//.attr("transform", "translate(-8,-5)")
+					.style("font-size", "11.5px")
+
+		svg.selectAll("myline")
+		.data(data)
+		.enter()
+		.append("line")
+			.attr("y1", function(d) { return y(d.Type_E); })
+			.attr("y2", function(d) { return y(d.Type_E); })
+			.attr("x1", function(d) { return x(d.Total); })
+			.attr("x2", function(d) { return x(0); })
+			.attr("stroke", "dimgray")
+			.attr("stroke-width", "1px")
+			.style("visibility", "hidden")
+			.attr("id", "chart4")
+			.attr("transform", "translate(" + 180 + "," + 108 + ")")
+			
+		svg.selectAll("mycircle")
+		.data(data)
+		.enter()
+		.append("circle")
+			.attr("cx", function(d) { return x(d.Total); })
+			.attr("cy", function(d) { return y(d.Type_E); })
+			.attr("r", "4")
+			.style("fill", "#bf4778")
+			.attr("stroke", "white")
+			.style("visibility", "hidden")
+			.attr("id", "chart4")
+			.attr("transform", "translate(" + 180 + "," + 108 + ")")
+			.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.attr("r", "6")
+				.style("stroke", "dimgray");
+				tooltip.style("visibility", "visible").text(d.Total)
+			})
+			.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html( d.Total + "%"))
+			.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '1')
+				.attr("r", "4")
+				.style("stroke", "white")
+				tooltip.style("visibility", "hidden")
+			})	
+
+		svg.selectAll("mycircle")
+		.data(data)
+		.enter()
+		.append("circle")
+			.attr("cx", function(d) { return x(d.Managerial); })
+			.attr("cy", function(d) { return y(d.Type_E); })
+			.attr("r", "4")
+			.style("fill", "#f6c36f")
+			.attr("stroke", "white")
+			.style("visibility", "hidden")
+			.attr("id", "chart5")
+			.attr("transform", "translate(" + 180 + "," + 108 + ")")
+			.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.attr("r", "6")
+				.style("stroke", "dimgray");
+				tooltip.style("visibility", "visible").text(d.Managerial)
+			})
+			.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html( d.Managerial + "%"))
+			.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '1')
+				.attr("r", "4")
+				.style("stroke", "white")
+				tooltip.style("visibility", "hidden")
+			})	
+
+
+	})
+
+	var datapie3 = {"Men": 95, "Women": 5 }
+	var color = d3.scaleOrdinal()
+		.domain(datapie3)
+		.range(['#64a6bd', '#ffacc5'])
+	var pie = d3.pie()
+		.value(function(d) {return d.value; }).sort(null);
+	var data_ready3 = pie(d3.entries(datapie3))
+	var people = d3.scaleOrdinal()
+		.domain(datapie3)
+		.range([10.4, 0.6])
+
+	svg.append("g")
+    	.selectAll("g")
+		.data(data_ready3)
+		.enter()
+		.append('path')
+		.style("visibility", "hidden")
+		.attr("id", "chart6")
+		.attr('d', d3.arc()
+			.innerRadius(90)        
+			.outerRadius(123)
+		)
+		.attr('fill', function(d){ return(color(d.data.key)) })
+		.attr("stroke", "black")
+		.attr("transform", "translate(" + 250 + "," + 165 + ")")
+		.style("stroke-width", "1px")
+		.style("stroke", "dimgray")
+		.style("fill-opacity", 0.7)
+		.on('mouseover', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.9')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(87)        
+					.outerRadius(126)
+				);
+				tooltip.style("visibility", "visible").text(d.data.key)
+			})
+		.on("mousemove", d => tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+20)+"px").html(d.data.key + ": " + "<br></br>" + d.data.value + "%" + "<br></br>" + people(d.data.key) + " people" ))
+		.on('mouseout', function (d, i) {
+			d3.select(this).transition()
+				.duration('50')
+				.style('fill-opacity', '0.7')
+				.style("stroke-width", "1px")
+				.attr('d', d3.arc()
+					.innerRadius(90)         
+					.outerRadius(123)
+				);
+				tooltip.style("visibility", "hidden")
+			})	
+
+
+	
+
+	var controller = new ScrollMagic.Controller();
+    
+	new ScrollMagic.Scene({triggerElement: "#div1"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart1")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart1")
+					.style("visibility", "hidden");
+                })
+		.addTo(controller);
+
+	new ScrollMagic.Scene({triggerElement: "#div2"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart1")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart2")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart2")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart1")
+					.style("visibility", "visible");
+                })
+		.addTo(controller);
+
+	new ScrollMagic.Scene({triggerElement: "#div3"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart2")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart3")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart3")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart2")
+					.style("visibility", "visible");
+                })
+		.addTo(controller);
+
+		
+
+	new ScrollMagic.Scene({triggerElement: "#div6"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart3")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart4")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart4")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart5")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart3")
+					.style("visibility", "visible");
+                })
+		.addTo(controller); 
+		
+	new ScrollMagic.Scene({triggerElement: "#div7"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart5")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart5")
+					.style("visibility", "hidden");
+                })
+		.addTo(controller); 
+
+
+	new ScrollMagic.Scene({triggerElement: "#div8"})
+            .on("enter", function (event) { 
+				d3.selectAll("#chart5")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart4")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart6")
+					.style("visibility", "visible");
+                })
+                .on("leave", function (event) { 
+				d3.selectAll("#chart6")
+					.style("visibility", "hidden");
+				d3.selectAll("#chart5")
+					.style("visibility", "visible")
+				d3.selectAll("#chart4")
+					.style("visibility", "visible");
+                })
+		.addTo(controller);
+
+	</script>
+
+	  
+
+</html>
